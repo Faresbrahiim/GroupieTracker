@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 )
-
+// ..
 // feth mean bring the data from the source -> in this case  by api
 // http.get => returns the whole response and error  if exist
 func Fetch(url string, w http.ResponseWriter) *http.Response {
