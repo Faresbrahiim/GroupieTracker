@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 )
+
 // feth mean bring the data from the source -> in this case  by api
-// http.get => returns the whole response and error  if exist 
+// http.get => returns the whole response and error  if exist
 func Fetch(url string, w http.ResponseWriter) *http.Response {
 	data1, err := http.Get(url)
 	if err != nil {
@@ -15,7 +16,6 @@ func Fetch(url string, w http.ResponseWriter) *http.Response {
 	}
 	return data1
 }
-
 
 // decode parameters => res , pointer  type any to work with all daata types , and http resp
 // newdecoder transform the body of response from json form to go struct the decode store it into the struct

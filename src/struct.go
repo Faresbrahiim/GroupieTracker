@@ -25,7 +25,7 @@ type Relations struct {
 }
 
 type SecondPageData struct {
-	ID        int  
+	ID        int
 	Artist    Artist
 	Locations []string
 }
