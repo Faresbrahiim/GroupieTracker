@@ -10,6 +10,8 @@
 <body>
     <h1>Artists</h1>
     <ul class="artist-list">
+        <!-- {{}} place holder from template package && range => ranging over the the slice of artists which is <.> in each artist we will bring name + image  -->
+        <!-- when we clicked on the link a > req sent to server with root /details/1.... -->
         {{range .}} 
         <li class="artist-item">
             <a href="/details/{{.ID}}" class="artist-link">

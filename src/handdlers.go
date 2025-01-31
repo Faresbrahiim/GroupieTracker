@@ -8,15 +8,20 @@ import (
 	"strings"
 )
 
+// global var for templates (html pages) we'll use to send it with placeholders or nill
+// must will panic the program directly  if file doesn't exist ..... without executing rest  of code 
+// parsefiles => parse the files  and store them => we can call them by their names directly 
 var tmpl = template.Must(template.ParseFiles("templates/error.html", "templates/index.html", "templates/secondpage.html", "templates/thirdpage.html"))
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
+	// check the root 
 	if r.URL.Path != "/" {
 		data := map[string]any{"code": http.StatusNotFound, "msg": "page not found"}
 		w.WriteHeader(http.StatusNotFound)
 		tmpl.ExecuteTemplate(w, "error.html", data)
 		return
 	}
+	// check method 
 	if r.Method != "GET" {
 		data := map[string]any{"code": http.StatusMethodNotAllowed, "msg": "method not allowed"}
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -25,8 +30,11 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	url := "https://groupietrackers.herokuapp.com/api/artists"
+	//  fetch the api or data
 	data := Fetch(url, w)
+	// declare var type []artist to hold  all artists with their info (stuct of info)
 	var artists []Artist
+	// args => the res + pointer to var + reps writer
 	DecodeByUs(data, &artists, w)
 
 	if err := tmpl.ExecuteTemplate(w, "index.html", artists); err != nil {
@@ -37,19 +45,21 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func SecondPage(w http.ResponseWriter, r *http.Request) {
+	// check root
 	if !strings.HasPrefix(r.URL.Path, "/details/") {
 		data := map[string]any{"code": http.StatusNotFound, "msg": "page not found"}
 		w.WriteHeader(http.StatusNotFound)
 		tmpl.ExecuteTemplate(w, "error.html", data)
 		return
 	}
+	// check method
 	if r.Method != "GET" {
 		data := map[string]any{"code": http.StatusMethodNotAllowed, "msg": "method not allowed"}
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		tmpl.ExecuteTemplate(w, "error.html", data)
 		return
 	}
-
+    // bring the id from url request
 	idStr := r.URL.Path[len("/details/"):]
 
 	ids, _ := strconv.Atoi(idStr)
