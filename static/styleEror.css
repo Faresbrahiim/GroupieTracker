@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #000000; 
+}
+.Error {
+    text-align: center;
+    padding: 20px; 
+    background-color: white; 
+    border-radius: 8px;
+    width: 300px; 
+}
+
+.code {
+    color: #d9534f; 
+}

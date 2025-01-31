@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Artists</title> 
+        <link rel="stylesheet" href="/static/style.css">  
+    </head>
+    
+<body>
+    <h1>Artists</h1>
+    <ul class="artist-list">
+        {{range .}} 
+        <li class="artist-item">
+            <a href="/details/{{.ID}}" class="artist-link">
+                <h2>{{.Name}}</h2>
+                <img src="{{.Image}}" alt="image of artist">
+            </a>            
+        </li>
+        {{end}}
+    </ul>
+</body>
+</html>

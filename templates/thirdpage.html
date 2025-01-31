@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dates and Locations for Artist {{.ID}}</title>
+    <link rel="stylesheet" href="/static/informations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+
+</head>
+<body class="body">
+    <h1 class="artist-name">Locations and Dates for Artist </h1>
+
+    <div class="container">
+        <div class="left-card">
+            <h2 class="section-title"> <i class="fa-solid fa-music"></i>   Dates and Locations</h2>
+            <ul>
+                {{range $location, $dates := .DatesLocations}}
+                    <li>
+                        <strong>{{ $location }}</strong>: 
+                        <ul class="location-list">
+                            {{range $dates}}
+                                <li class="location-item">{{.}}</li>
+                            {{end}}
+                        </ul>
+                    </li>
+                {{end}}
+            </ul>
+        </div>
+
+        <div class="right-card">
+            <h2 class="section-title"><i class="fa-regular fa-calendar-days"> </i>  All Dates</h2>
+            <ul>
+                {{range .Dates}}
+                  <li class="member-item">{{.}}</li>          
+                {{end}}
+                <p class="back-link"><a href="/">Back to Home</a></p>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
