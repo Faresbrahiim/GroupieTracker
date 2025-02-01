@@ -13,6 +13,7 @@ import (
 // from the browser a request come with method "GET" and root "/"
 // the htttp.Handlefunc playyes a rule of guid => we give it  the root and check it with the req root if they math it send that req to specify func
 
+
 func main() {
 	http.HandleFunc("/", server.HomePage)
 	http.HandleFunc("/details/", server.SecondPage)
